@@ -34,6 +34,8 @@ public class PlaylistOrganizerUserInterface
                 System.out.println("AddSong - Add a song to an existing playlist");
                 System.out.println("RemSong - Remove a song from an existing playlist");
                 System.out.println("Shuffle - Shuffles the song order of a playlist");
+                System.out.println("SortTitle - Orders the songs in a playlist by title");
+                System.out.println("SortArtist - Orders the songs in a playlist by artist");
             }
             else if(input.equalsIgnoreCase("2")) // Describes the program's purpose
             {
@@ -119,7 +121,7 @@ public class PlaylistOrganizerUserInterface
                 try
                 {
                     organizer.addPlaylistSong(index, title, artist);
-                    System.out.println("Song [" + artist + " - " + title + "] has been added to playlist [#" + index + "]");
+                    System.out.println("Song [" + artist + " - " + title + "] has been added to playlist [#" + index + "].");
                 }
                 catch (RuntimeException e) {System.out.println(e.getMessage());}
             }
@@ -152,6 +154,36 @@ public class PlaylistOrganizerUserInterface
                 {
                     organizer.shufflePlaylist(index);
                     System.out.println("Shuffled playlist [#" + index + "].\n");
+                    organizer.printPlaylistSongs(index);
+                }
+                catch (RuntimeException e) {System.out.println(e.getMessage());}
+            }
+            else if (input.equalsIgnoreCase("SORTTITLE")) // Orders a playlist's songs by their titles (A-Z)
+            {
+                organizer.printAllPlaylists();
+                System.out.print("Playlist number: ");
+                String index = scanner.nextLine();
+                index = index.trim();
+
+                try
+                {
+                    organizer.sortPlaylistTitle(index);
+                    System.out.println("Sorted playlist [#" + index + "].\n");
+                    organizer.printPlaylistSongs(index);
+                }
+                catch (RuntimeException e) {System.out.println(e.getMessage());}
+            }
+            else if (input.equalsIgnoreCase("SORTARTIST")) // Orders a playlist's songs by their artist (A-Z)
+            {
+                organizer.printAllPlaylists();
+                System.out.print("Playlist number: ");
+                String index = scanner.nextLine();
+                index = index.trim();
+
+                try
+                {
+                    organizer.sortPlaylistArtist(index);
+                    System.out.println("Sorted playlist [#" + index + "].\n");
                     organizer.printPlaylistSongs(index);
                 }
                 catch (RuntimeException e) {System.out.println(e.getMessage());}

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class PlaylistOrganizer
 {
@@ -168,6 +169,28 @@ public class PlaylistOrganizer
         if(selectedPlaylist.getSongCount() == 0) {throw new EmptyPlaylistException("Selected playlist has no songs to shuffle.");}
 
         Collections.shuffle(selectedPlaylist.getSongList());
+    }
+
+    // Sorts a given playlist's songs by their titles (A-Z)
+    public void sortPlaylistTitle(String index) throws UnknownPlaylistException, EmptyPlaylistException
+    {
+        Playlist selectedPlaylist = obtainPlaylist(index);
+        if (selectedPlaylist == null) {throw new UnknownPlaylistException("Playlist [#" + index + "] does not exist.");}
+
+        if(selectedPlaylist.getSongCount() == 0) {throw new EmptyPlaylistException("Selected playlist has no songs to sort.");}
+
+        selectedPlaylist.getSongList().sort(Comparator.comparing(Song::getTitle));
+    }
+
+    // Sorts a given playlist's songs by their artist's names (A-Z)
+    public void sortPlaylistArtist(String index) throws UnknownPlaylistException, EmptyPlaylistException
+    {
+        Playlist selectedPlaylist = obtainPlaylist(index);
+        if (selectedPlaylist == null) {throw new UnknownPlaylistException("Playlist [#" + index + "] does not exist.");}
+
+        if(selectedPlaylist.getSongCount() == 0) {throw new EmptyPlaylistException("Selected playlist has no songs to sort.");}
+
+        selectedPlaylist.getSongList().sort(Comparator.comparing(Song::getArtist));
     }
 }
 
