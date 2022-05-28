@@ -162,7 +162,7 @@ public class PlaylistOrganizerUserInterface
 
 // Custom exception classes for PlaylistOrganizer
 
-class UnknownSongException extends  RuntimeException
+class UnknownSongException extends RuntimeException
 {
     public UnknownSongException() {}
 
