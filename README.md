@@ -3,5 +3,5 @@ Allows users to create and organize playlists and add/remove songs to them. In-d
 
 # Running the Project
 - Run the `PlaylistOrganizerUserInferface.java` file to run the application
-- Once run, an options menu will appear
+- Once run, an option menu will appear
 - Type the corresponding command to perform the desired task
