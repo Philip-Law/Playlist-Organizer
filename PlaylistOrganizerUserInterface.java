@@ -36,6 +36,7 @@ public class PlaylistOrganizerUserInterface
                 System.out.println("Shuffle - Shuffles the song order of a playlist");
                 System.out.println("SortTitle - Orders the songs in a playlist by title");
                 System.out.println("SortArtist - Orders the songs in a playlist by artist");
+                System.out.println("SortDate - Orders the songs in a playlist by date added");
             }
             else if(input.equalsIgnoreCase("2")) // Describes the program's purpose
             {
@@ -183,6 +184,21 @@ public class PlaylistOrganizerUserInterface
                 try
                 {
                     organizer.sortPlaylistArtist(index);
+                    System.out.println("Sorted playlist [#" + index + "].\n");
+                    organizer.printPlaylistSongs(index);
+                }
+                catch (RuntimeException e) {System.out.println(e.getMessage());}
+            }
+            else if (input.equalsIgnoreCase("SORTDATE")) // Orders a playlist's songs by their dates (first added - last added)
+            {
+                organizer.printAllPlaylists();
+                System.out.print("Playlist number: ");
+                String index = scanner.nextLine();
+                index = index.trim();
+
+                try
+                {
+                    organizer.sortPlaylistDate(index);
                     System.out.println("Sorted playlist [#" + index + "].\n");
                     organizer.printPlaylistSongs(index);
                 }
