@@ -7,20 +7,11 @@ public class PlaylistOrganizer
     private ArrayList<Playlist> playlists;
     private int playlistCount;
 
-    private int songNum;
-
     // Constructor method
     public PlaylistOrganizer()
     {
         this.playlists = new ArrayList<Playlist>();
         this.playlistCount = 0;
-        this.songNum = 1;
-    }
-
-    // Helper method that generates a song number (increases by 1 for every song)
-    private int generateSongNum()
-    {
-        return songNum++;
     }
 
     // Prints the names of all created playlists in a numbered list
@@ -140,7 +131,7 @@ public class PlaylistOrganizer
 
         if (artist.trim().equals("")) {throw new InvalidSongArtistException("Invalid song artist entered.");}
 
-        selectedPlaylist.addSong(new Song(generateSongNum(), title, artist));
+        selectedPlaylist.addSong(new Song(title, artist));
     }
 
     // Helper method that obtains a Song reference from a playlist if it exists
@@ -200,17 +191,6 @@ public class PlaylistOrganizer
         if(selectedPlaylist.getSongCount() == 0) {throw new EmptyPlaylistException("Selected playlist has no songs to sort.");}
 
         selectedPlaylist.getSongList().sort(Comparator.comparing(Song::getArtist));
-    }
-
-    // Sorts a given playlist's songs by their date added (First added to last added)
-    public void sortPlaylistDate(String index) throws UnknownPlaylistException, EmptyPlaylistException
-    {
-        Playlist selectedPlaylist = obtainPlaylist(index);
-        if (selectedPlaylist == null) {throw new UnknownPlaylistException("Playlist [#" + index + "] does not exist.");}
-
-        if(selectedPlaylist.getSongCount() == 0) {throw new EmptyPlaylistException("Selected playlist has no songs to sort.");}
-
-        selectedPlaylist.getSongList().sort(Comparator.comparing(Song::getSongNum));
     }
 }
 
