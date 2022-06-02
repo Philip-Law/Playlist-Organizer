@@ -8,12 +8,20 @@ public class Song
 {
     private String title;
     private String artist;
+    private int songNum;
 
     // Constructor method
-    public Song(String title, String artist)
+    public Song(int songNum, String title, String artist)
     {
+        this.songNum = songNum;
         this.title = title;
         this.artist = artist;
+    }
+
+    // Obtains song number
+    public int getSongNum()
+    {
+        return this.songNum;
     }
 
     // Obtains song title
